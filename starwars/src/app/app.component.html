@@ -1,3 +1,4 @@
-<h1>
-  {{title}}
-</h1>
+<ul>
+  <li *ngFor='let ship of ships; let i = index' (click)='setSelectItem(ship)'>{{ship.name}}</li>
+</ul>
+<app-details [ship]='selectedShip'></app-details>
