@@ -1,4 +1,25 @@
-<ul>
-  <li *ngFor='let ship of ships; let i = index' (click)='setSelectItem(ship)'>{{ship.name}}</li>
-</ul>
-<app-details [ship]='selectedShip'></app-details>
+<md-sidenav-layout>
+
+  <md-toolbar color="primary">
+    Starwars Tracker
+  </md-toolbar>
+
+  <div class="app-content">
+
+    <div class="leftcontainer">
+      <md-card>
+        <md-nav-list>
+          <a md-list-item *ngFor="let ship of ships | async" (click)="setSelectedShip(ship)"> {{ ship.Name }} </a>
+        </md-nav-list>
+      </md-card>
+    </div>
+
+    <div class="rightcontainer">
+      <md-card>
+        <app-details [ship]="selectedShip"></app-details>
+      </md-card>
+    </div>
+
+  </div>
+
+</md-sidenav-layout>

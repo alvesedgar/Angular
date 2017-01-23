@@ -1,42 +1,28 @@
-import { Component } from '@angular/core';
-import { IShip } from './model/Ship';
-import { ShipService } from './services/ship.service';
+import { Component, OnInit } from '@angular/core';
+import { IShip } from '../models/ship';
+import { ShipService } from './shared/Ship.service';
+import 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers:[ShipService ]
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  ships: Array<IShip> = [];
-  selectedShip: IShip;
+  ships: Observable<IShip[]>;
+  selectedShip: IShip = { Name: '', Description: '', Foto: '', isEmpire: false, Trilogy: 1, Movie: '' };
 
-  constructor(private shipService: ShipService) {
-    this.selectedShip=this.ships[0];
-  }
-
-  setSelectItem(ship: IShip) {
-    this.selectedShip = ship;
-  }
+  constructor(private shipService: ShipService) {}
 
   ngOnInit() {
-    this.shipService.getShip().subscribe(x=>{this.ships=x;console.log(x);});
-    console.log('ngOnInit');
+    this.ships = this.shipService.getShips();
   }
 
-  ngOnChanges() {
-    console.log('ngOnChanges');
+  setSelectedShip(data: IShip) {
+    this.selectedShip = data;
   }
 
-  ngOnDestroy() {
-    console.log('ngOnDestroy');
-  }
-
-  ngAfterViewInit() {
-    console.log('ngAfterViewInit');
-  }
 
 }
-

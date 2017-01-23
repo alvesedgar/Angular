@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class StarwarsPage {
+export class StarwarsTrackerPage {
   navigateTo() {
     return browser.get('/');
   }

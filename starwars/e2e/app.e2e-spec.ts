@@ -1,10 +1,10 @@
-import { StarwarsPage } from './app.po';
+import { StarwarsTrackerPage } from './app.po';
 
-describe('starwars App', function() {
-  let page: StarwarsPage;
+describe('starwars-tracker App', function() {
+  let page: StarwarsTrackerPage;
 
   beforeEach(() => {
-    page = new StarwarsPage();
+    page = new StarwarsTrackerPage();
   });
 
   it('should display message saying app works', () => {
